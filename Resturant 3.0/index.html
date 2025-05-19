@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Savanna Bites | Authentic Kenyan Cuisine in Nairobi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                        url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        .menu-item:hover .menu-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .menu-overlay {
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .testimonial-card {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .gallery-item {
+            overflow: hidden;
+        }
+        
+        .gallery-item img {
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .floating-btn {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white shadow-md z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <div class="w-12 h-12 rounded-full bg-amber-600 flex items-center justify-center">
+                        <span class="text-white font-bold text-xl">SB</span>
+                    </div>
+                    <span class="ml-3 text-xl font-bold text-gray-800">Savanna Bites</span>
+                </div>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-gray-800 hover:text-amber-600 transition">Home</a>
+                    <a href="#about" class="text-gray-800 hover:text-amber-600 transition">About</a>
+                    <a href="#menu" class="text-gray-800 hover:text-amber-600 transition">Menu</a>
+                    <a href="#gallery" class="text-gray-800 hover:text-amber-600 transition">Gallery</a>
+                    <a href="#contact" class="text-gray-800 hover:text-amber-600 transition">Contact</a>
+                </div>
+                
+                <div class="md:hidden">
+                    <button id="menu-toggle" class="text-gray-800 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+                <a href="#home" class="block py-2 text-gray-800 hover:text-amber-600 transition">Home</a>
+                <a href="#about" class="block py-2 text-gray-800 hover:text-amber-600 transition">About</a>
+                <a href="#menu" class="block py-2 text-gray-800 hover:text-amber-600 transition">Menu</a>
+                <a href="#gallery" class="block py-2 text-gray-800 hover:text-amber-600 transition">Gallery</a>
+                <a href="#contact" class="block py-2 text-gray-800 hover:text-amber-600 transition">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section min-h-screen flex items-center justify-center text-white pt-20">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">Experience Authentic Kenyan Flavors</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Savor the taste of Nairobi's finest culinary traditions in the heart of Westlands</p>
+            <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-6">
+                <a href="#menu" class="bg-amber-600 hover:bg-amber-700 text-white px-8 py-3 rounded-full font-medium transition">View Menu</a>
+                <a href="#contact" class="border-2 border-white hover:bg-white hover:text-gray-900 text-white px-8 py-3 rounded-full font-medium transition">Reserve Table</a>
+            </div>
+        </div>
+        
+        <a href="#about" class="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white text-4xl floating-btn">
+            <i class="fas fa-chevron-down"></i>
+        </a>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6">Our Story</h2>
+                    <p class="text-gray-600 mb-4">Founded in 2010, Savanna Bites began as a small family-owned eatery in Nairobi's vibrant Westlands district. What started as a humble nyama choma spot has blossomed into one of the city's most beloved restaurants.</p>
+                    <p class="text-gray-600 mb-6">We take pride in sourcing the freshest local ingredients and preparing them with traditional techniques passed down through generations, while adding contemporary twists that surprise and delight.</p>
+                    <div class="flex space-x-4">
+                        <div class="bg-amber-100 p-4 rounded-lg">
+                            <i class="fas fa-utensils text-amber-600 text-2xl mb-2"></i>
+                            <h3 class="font-bold text-gray-800">Authentic</h3>
+                            <p class="text-sm text-gray-600">Traditional recipes</p>
+                        </div>
+                        <div class="bg-amber-100 p-4 rounded-lg">
+                            <i class="fas fa-leaf text-amber-600 text-2xl mb-2"></i>
+                            <h3 class="font-bold text-gray-800">Fresh</h3>
+                            <p class="text-sm text-gray-600">Local ingredients</p>
+                        </div>
+                        <div class="bg-amber-100 p-4 rounded-lg">
+                            <i class="fas fa-heart text-amber-600 text-2xl mb-2"></i>
+                            <h3 class="font-bold text-gray-800">Passionate</h3>
+                            <p class="text-sm text-gray-600">Family tradition</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2 relative">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1559847844-5315695dadae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1398&q=80" alt="Restaurant interior" class="rounded-lg shadow-xl w-full">
+                        <div class="absolute -bottom-6 -right-6 bg-amber-600 p-4 rounded-lg shadow-lg hidden md:block">
+                            <p class="text-white font-bold text-xl">10+ Years</p>
+                            <p class="text-white text-sm">of culinary excellence</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Our Menu</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">From sizzling nyama choma to flavorful pilau, our menu celebrates Kenya's diverse culinary heritage with a modern touch.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Menu Item 1 -->
+                <div class="menu-item bg-white rounded-lg overflow-hidden shadow-md relative">
+                    <img src="https://images.unsplash.com/photo-1603360946369-dc9bb6258143?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Nyama Choma" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Nyama Choma Platter</h3>
+                        <p class="text-gray-600 mb-4">Tender grilled goat meat served with kachumbari and ugali</p>
+                        <p class="text-amber-600 font-bold">KSh 1,800</p>
+                    </div>
+                    <div class="menu-overlay absolute inset-0 bg-amber-600 bg-opacity-90 flex items-center justify-center p-6">
+                        <div class="text-center text-white">
+                            <h3 class="text-xl font-bold mb-2">Nyama Choma Platter</h3>
+                            <p class="mb-4">Our signature dish featuring premium goat meat marinated in secret spices and slow-grilled to perfection.</p>
+                            <button class="bg-white text-amber-600 px-4 py-2 rounded-full font-medium">Add to Order</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Menu Item 2 -->
+                <div class="menu-item bg-white rounded-lg overflow-hidden shadow-md relative">
+                    <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Pilau" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Coastal Pilau</h3>
+                        <p class="text-gray-600 mb-4">Fragrant rice cooked with spices, meat and vegetables</p>
+                        <p class="text-amber-600 font-bold">KSh 1,200</p>
+                    </div>
+                    <div class="menu-overlay absolute inset-0 bg-amber-600 bg-opacity-90 flex items-center justify-center p-6">
+                        <div class="text-center text-white">
+                            <h3 class="text-xl font-bold mb-2">Coastal Pilau</h3>
+                            <p class="mb-4">Aromatic basmati rice cooked with tender beef, caramelized onions, and a blend of coastal spices that will transport you to Mombasa.</p>
+                            <button class="bg-white text-amber-600 px-4 py-2 rounded-full font-medium">Add to Order</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Menu Item 3 -->
+                <div class="menu-item bg-white rounded-lg overflow-hidden shadow-md relative">
+                    <img src="https://images.unsplash.com/photo-1603105037880-880cd4edfb0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Samosas" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Samosas Trio</h3>
+                        <p class="text-gray-600 mb-4">Crispy pastry with beef, vegetable, and cheese fillings</p>
+                        <p class="text-amber-600 font-bold">KSh 900</p>
+                    </div>
+                    <div class="menu-overlay absolute inset-0 bg-amber-600 bg-opacity-90 flex items-center justify-center p-6">
+                        <div class="text-center text-white">
+                            <h3 class="text-xl font-bold mb-2">Samosas Trio</h3>
+                            <p class="mb-4">Our popular appetizer featuring three varieties: traditional minced beef, spiced vegetable, and creamy cheese with herbs.</p>
+                            <button class="bg-white text-amber-600 px-4 py-2 rounded-full font-medium">Add to Order</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="inline-block bg-amber-600 hover:bg-amber-700 text-white px-8 py-3 rounded-full font-medium transition">View Full Menu</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-20 bg-amber-600 text-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">What Our Guests Say</h2>
+                <p class="max-w-2xl mx-auto">Hear from our satisfied customers who have experienced the Savanna Bites difference</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card bg-white text-gray-800 p-8 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center">
+                            <i class="fas fa-user text-amber-600"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-bold">James Mwangi</h4>
+                            <div class="flex text-amber-500">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p>"The nyama choma here is the best I've had in Nairobi! Perfectly spiced and so tender. The service was excellent too - will definitely be back!"</p>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card bg-white text-gray-800 p-8 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center">
+                            <i class="fas fa-user text-amber-600"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-bold">Sarah Johnson</h4>
+                            <div class="flex text-amber-500">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p>"As a visitor to Kenya, I wanted authentic local food and Savanna Bites delivered! The pilau was fragrant and delicious, and the staff were so welcoming."</p>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card bg-white text-gray-800 p-8 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center">
+                            <i class="fas fa-user text-amber-600"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-bold">Amina Hassan</h4>
+                            <div class="flex text-amber-500">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p>"I've been coming here for years and the quality never drops. Their samosas are legendary in my family - we order them for every gathering!"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section id="gallery" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Our Gallery</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">A visual journey through our restaurant, dishes, and the vibrant atmosphere of Savanna Bites</p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="gallery-item rounded-lg overflow-hidden h-64">
+                    <img src="https://images.unsplash.com/photo-1517248135467-4dbc0ea66671?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Restaurant interior" class="w-full h-full object-cover">
+                </div>
+                <div class="gallery-item rounded-lg overflow-hidden h-64">
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Chef preparing food" class="w-full h-full object-cover">
+                </div>
+                <div class="gallery-item rounded-lg overflow-hidden h-64">
+                    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" alt="Dining area" class="w-full h-full object-cover">
+                </div>
+                <div class="gallery-item rounded-lg overflow-hidden h-64">
+                    <img src="https://images.unsplash.com/photo-1559847844-5315695dadae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1398&q=80" alt="Bar area" class="w-full h-full object-cover">
+                </div>
+                <div class="gallery-item rounded-lg overflow-hidden h-64">
+                    <img src="https://images.unsplash.com/photo-1603105037880-880cd4edfb0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Samosas" class="w-full h-full object-cover">
+                </div>
+                <div class="gallery-item rounded-lg overflow-hidden h-64">
+                    <img src="https://images.unsplash.com/photo-1603360946369-dc9bb6258143?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Nyama choma" class="w-full h-full object-cover">
+                </div>
+                <div class="gallery-item rounded-lg overflow-hidden h-64">
+                    <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Pilau" class="w-full h-full object-cover">
+                </div>
+                <div class="gallery-item rounded-lg overflow-hidden h-64">
+                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Dessert" class="w-full h-full object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Visit Us</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">We'd love to host you at our Westlands location. Reserve a table or stop by for an unforgettable dining experience.</p>
+            </div>
+            
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
+                    <div class="bg-white p-8 rounded-lg shadow-lg h-full">
+                        <h3 class="text-xl font-bold text-gray-800 mb-6">Contact Information</h3>
+                        
+                        <div class="flex items-start mb-6">
+                            <div class="bg-amber-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-map-marker-alt text-amber-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Address</h4>
+                                <p class="text-gray-600">123 Westlands Road, Nairobi, Kenya</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start mb-6">
+                            <div class="bg-amber-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-phone-alt text-amber-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Phone</h4>
+                                <p class="text-gray-600">+254 700 123456</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start mb-6">
+                            <div class="bg-amber-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-envelope text-amber-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Email</h4>
+                                <p class="text-gray-600">info@savannabites.co.ke</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-amber-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-clock text-amber-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Opening Hours</h4>
+                                <p class="text-gray-600 mb-1">Monday - Friday: 11:00 AM - 10:00 PM</p>
+                                <p class="text-gray-600">Saturday - Sunday: 10:00 AM - 11:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2">
+                    <div class="bg-white p-8 rounded-lg shadow-lg">
+                        <h3 class="text-xl font-bold text-gray-800 mb-6">Reserve a Table</h3>
+                        
+                        <form id="reservation-form">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                <div>
+                                    <label for="name" class="block text-gray-700 mb-2">Full Name</label>
+                                    <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500">
+                                </div>
+                                <div>
+                                    <label for="phone" class="block text-gray-700 mb-2">Phone Number</label>
+                                    <input type="tel" id="phone" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500">
+                                </div>
+                                <div>
+                                    <label for="date" class="block text-gray-700 mb-2">Date</label>
+                                    <input type="date" id="date" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500">
+                                </div>
+                                <div>
+                                    <label for="time" class="block text-gray-700 mb-2">Time</label>
+                                    <input type="time" id="time" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500">
+                                </div>
+                                <div>
+                                    <label for="guests" class="block text-gray-700 mb-2">Number of Guests</label>
+                                    <select id="guests" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500">
+                                        <option value="1">1 Person</option>
+                                        <option value="2">2 People</option>
+                                        <option value="3">3 People</option>
+                                        <option value="4">4 People</option>
+                                        <option value="5">5 People</option>
+                                        <option value="6">6 People</option>
+                                        <option value="7">7 People</option>
+                                        <option value="8">8+ People</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label for="special-requests" class="block text-gray-700 mb-2">Special Requests</label>
+                                <textarea id="special-requests" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500"></textarea>
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-amber-600 hover:bg-amber-700 text-white px-6 py-3 rounded-lg font-medium transition">Make Reservation</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map -->
+    <div class="h-96 w-full">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.817950792373!2d36.80668231475393!3d-1.280599999059526!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f10d5a5e5e5e5%3A0x1e3e3e3e3e3e3e3e!2sWestlands%2C%20Nairobi!5e0!3m2!1sen!2ske!4v1620000000000!5m2!1sen!2ske" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-amber-600 flex items-center justify-center">
+                            <span class="text-white font-bold text-xl">SB</span>
+                        </div>
+                        <span class="ml-3 text-xl font-bold">Savanna Bites</span>
+                    </div>
+                    <p class="text-gray-400">Celebrating Kenya's culinary heritage with authentic flavors and warm hospitality since 2010.</p>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition">Home</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition">About Us</a></li>
+                        <li><a href="#menu" class="text-gray-400 hover:text-white transition">Menu</a></li>
+                        <li><a href="#gallery" class="text-gray-400 hover:text-white transition">Gallery</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Opening Hours</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex justify-between"><span>Monday - Friday</span> <span>11AM - 10PM</span></li>
+                        <li class="flex justify-between"><span>Saturday</span> <span>10AM - 11PM</span></li>
+                        <li class="flex justify-between"><span>Sunday</span> <span>10AM - 11PM</span></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Follow Us</h3>
+                    <div class="flex space-x-4 mb-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-amber-600 transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-amber-600 transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-amber-600 transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-amber-600 transition">
+                            <i class="fab fa-tripadvisor"></i>
+                        </a>
+                    </div>
+                    <p class="text-gray-400">Subscribe to our newsletter for updates and special offers</p>
+                    <div class="mt-4 flex">
+                        <input type="email" placeholder="Your email" class="px-4 py-2 bg-gray-800 text-white rounded-l-lg focus:outline-none w-full">
+                        <button class="bg-amber-600 hover:bg-amber-700 px-4 py-2 rounded-r-lg">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 Savanna Bites. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#home" id="back-to-top" class="fixed bottom-8 right-8 bg-amber-600 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition opacity-0 invisible">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // Back to top button
+        window.addEventListener('scroll', function() {
+            const backToTopButton = document.getElementById('back-to-top');
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.remove('opacity-100', 'visible');
+                backToTopButton.classList.add('opacity-0', 'invisible');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu if open
+                if (!document.getElementById('mobile-menu').classList.contains('hidden')) {
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                }
+            });
+        });
+
+        // Form submission
+        document.getElementById('reservation-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const date = document.getElementById('date').value;
+            const time = document.getElementById('time').value;
+            const guests = document.getElementById('guests').value;
+            const requests = document.getElementById('special-requests').value;
+            
+            // Here you would typically send this data to a server
+            // For demo purposes, we'll just show an alert
+            alert(`Thank you, ${name}! Your reservation for ${guests} on ${date} at ${time} has been received. We'll contact you shortly at ${phone} to confirm.`);
+            
+            // Reset form
+            this.reset();
+        });
+    </script>
+<p style="border-radius: 8px; text-align: center; font-size: 12px; color: #fff; margin-top: 16px;position: fixed; left: 8px; bottom: 8px; z-index: 10; background: rgba(0, 0, 0, 0.8); padding: 4px 8px;">Made with <img src="https://enzostvs-deepsite.hf.space/logo.svg" alt="DeepSite Logo" style="width: 16px; height: 16px; vertical-align: middle;display:inline-block;margin-right:3px;filter:brightness(0) invert(1);"><a href="https://enzostvs-deepsite.hf.space" style="color: #fff;text-decoration: underline;" target="_blank" >DeepSite</a> - 🧬 <a href="https://enzostvs-deepsite.hf.space?remix=Kevin-254/kevin" style="color: #fff;text-decoration: underline;" target="_blank" >Remix</a></p></body>
+</html>
