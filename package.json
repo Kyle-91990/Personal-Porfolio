@@ -1,0 +1,40 @@
+{
+  "name": "savanna-bites-restaurant",
+  "version": "1.0.0",
+  "description": "Modern restaurant website for Savanna Bites - Authentic Kenyan Cuisine",
+  "main": "index.html",
+  "scripts": {
+    "dev": "live-server --port=3000 --open=/index.html",
+    "build": "npm run minify-css && npm run minify-js",
+    "minify-css": "cleancss -o dist/styles.min.css css/styles.css",
+    "minify-js": "uglifyjs js/main.js -o dist/main.min.js",
+    "test": "jest",
+    "lint": "eslint js/**/*.js",
+    "format": "prettier --write .",
+    "validate-html": "html-validate index.html"
+  },
+  "keywords": [
+    "restaurant",
+    "kenyan-cuisine",
+    "nairobi",
+    "food",
+    "dining",
+    "responsive-design"
+  ],
+  "author": "Savanna Bites Team",
+  "license": "MIT",
+  "devDependencies": {
+    "clean-css-cli": "^5.6.2",
+    "eslint": "^8.50.0",
+    "html-validate": "^8.5.0",
+    "jest": "^29.7.0",
+    "live-server": "^1.2.2",
+    "prettier": "^3.0.3",
+    "uglify-js": "^3.17.4"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}

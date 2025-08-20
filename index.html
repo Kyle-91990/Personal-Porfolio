@@ -1,0 +1,230 @@
+@@ .. @@
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Savanna Bites | Authentic Kenyan Cuisine in Nairobi</title>
++    <meta name="description" content="Experience authentic Kenyan cuisine at Savanna Bites in Westlands, Nairobi. Enjoy traditional nyama choma, pilau, and more in a warm, welcoming atmosphere.">
++    <meta name="keywords" content="Kenyan restaurant, nyama choma, pilau, Nairobi dining, Westlands restaurant, authentic African cuisine">
++    <link rel="preconnect" href="https://fonts.googleapis.com">
++    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <script src="https://cdn.tailwindcss.com"></script>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+     <style>
+@@ .. @@
+         @keyframes float {
+             0% { transform: translateY(0px); }
+             50% { transform: translateY(-15px); }
+             100% { transform: translateY(0px); }
+         }
++        
++        .fade-in {
++            opacity: 0;
++            transform: translateY(30px);
++            transition: all 0.6s ease;
++        }
++        
++        .fade-in.visible {
++            opacity: 1;
++            transform: translateY(0);
++        }
++        
++        .loading {
++            pointer-events: none;
++            opacity: 0.7;
++        }
++        
++        .success-message {
++            background: #10b981;
++            color: white;
++            padding: 1rem;
++            border-radius: 0.5rem;
++            margin-top: 1rem;
++            display: none;
++        }
++        
++        .error-message {
++            background: #ef4444;
++            color: white;
++            padding: 1rem;
++            border-radius: 0.5rem;
++            margin-top: 1rem;
++            display: none;
++        }
+     </style>
+ </head>
+ <body class="bg-gray-50">
+@@ .. @@
+     <!-- About Section -->
+-    <section id="about" class="py-20 bg-white">
++    <section id="about" class="py-20 bg-white fade-in">
+         <div class="container mx-auto px-6">
+@@ .. @@
+     <!-- Menu Section -->
+-    <section id="menu" class="py-20 bg-gray-50">
++    <section id="menu" class="py-20 bg-gray-50 fade-in">
+         <div class="container mx-auto px-6">
+@@ .. @@
+     <!-- Testimonials -->
+-    <section class="py-20 bg-amber-600 text-white">
++    <section class="py-20 bg-amber-600 text-white fade-in">
+         <div class="container mx-auto px-6">
+@@ .. @@
+     <!-- Gallery -->
+-    <section id="gallery" class="py-20 bg-white">
++    <section id="gallery" class="py-20 bg-white fade-in">
+         <div class="container mx-auto px-6">
+@@ .. @@
+     <!-- Contact Section -->
+-    <section id="contact" class="py-20 bg-gray-50">
++    <section id="contact" class="py-20 bg-gray-50 fade-in">
+         <div class="container mx-auto px-6">
+@@ .. @@
+                             <button type="submit" class="w-full bg-amber-600 hover:bg-amber-700 text-white px-6 py-3 rounded-lg font-medium transition">Make Reservation</button>
++                            
++                            <div id="success-message" class="success-message">
++                                <i class="fas fa-check-circle mr-2"></i>
++                                Reservation submitted successfully! We'll contact you shortly.
++                            </div>
++                            
++                            <div id="error-message" class="error-message">
++                                <i class="fas fa-exclamation-triangle mr-2"></i>
++                                Please fill in all required fields.
++                            </div>
+                         </form>
+                     </div>
+                 </div>
+@@ .. @@
+     <script>
++        // Intersection Observer for fade-in animations
++        const observerOptions = {
++            threshold: 0.1,
++            rootMargin: '0px 0px -50px 0px'
++        };
++        
++        const observer = new IntersectionObserver((entries) => {
++            entries.forEach(entry => {
++                if (entry.isIntersecting) {
++                    entry.target.classList.add('visible');
++                }
++            });
++        }, observerOptions);
++        
++        // Observe all fade-in elements
++        document.querySelectorAll('.fade-in').forEach(el => {
++            observer.observe(el);
++        });
++        
+         // Mobile menu toggle
+         document.getElementById('menu-toggle').addEventListener('click', function() {
+             document.getElementById('mobile-menu').classList.toggle('hidden');
+         });
+@@ .. @@
+         // Form submission
+         document.getElementById('reservation-form').addEventListener('submit', function(e) {
+             e.preventDefault();
+             
++            // Show loading state
++            const submitButton = this.querySelector('button[type="submit"]');
++            const originalText = submitButton.textContent;
++            submitButton.textContent = 'Submitting...';
++            submitButton.classList.add('loading');
++            
++            // Hide previous messages
++            document.getElementById('success-message').style.display = 'none';
++            document.getElementById('error-message').style.display = 'none';
++            
+             // Get form values
+             const name = document.getElementById('name').value;
+             const phone = document.getElementById('phone').value;
+@@ .. @@
+             const guests = document.getElementById('guests').value;
+             const requests = document.getElementById('special-requests').value;
+             
+-            // Here you would typically send this data to a server
+-            // For demo purposes, we'll just show an alert
+-            alert(`Thank you, ${name}! Your reservation for ${guests} on ${date} at ${time} has been received. We'll contact you shortly at ${phone} to confirm.`);
++            // Form validation
++            if (!name || !phone || !date || !time) {
++                document.getElementById('error-message').style.display = 'block';
++                submitButton.textContent = originalText;
++                submitButton.classList.remove('loading');
++                return;
++            }
++            
++            // Simulate API call
++            setTimeout(() => {
++                // Show success message
++                document.getElementById('success-message').style.display = 'block';
++                
++                // Reset form
++                this.reset();
++                
++                // Reset button
++                submitButton.textContent = originalText;
++                submitButton.classList.remove('loading');
++                
++                // Scroll to success message
++                document.getElementById('success-message').scrollIntoView({ 
++                    behavior: 'smooth', 
++                    block: 'center' 
++                });
++            }, 1500);
++        });
++        
++        // Add to order functionality
++        document.querySelectorAll('.menu-overlay button').forEach(button => {
++            button.addEventListener('click', function(e) {
++                e.stopPropagation();
++                const menuItem = this.closest('.menu-item');
++                const itemName = menuItem.querySelector('h3').textContent;
++                
++                // Create a simple notification
++                const notification = document.createElement('div');
++                notification.className = 'fixed top-20 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 transform translate-x-full transition-transform duration-300';
++                notification.innerHTML = `<i class="fas fa-check mr-2"></i>${itemName} added to order!`;
++                document.body.appendChild(notification);
++                
++                // Animate in
++                setTimeout(() => {
++                    notification.classList.remove('translate-x-full');
++                }, 100);
++                
++                // Remove after 3 seconds
++                setTimeout(() => {
++                    notification.classList.add('translate-x-full');
++                    setTimeout(() => {
++                        document.body.removeChild(notification);
++                    }, 300);
++                }, 3000);
++            });
++        });
++        
++        // Newsletter subscription
++        document.querySelector('footer button').addEventListener('click', function() {
++            const emailInput = this.previousElementSibling;
++            const email = emailInput.value;
+             
+-            // Reset form
+-            this.reset();
++            if (email && email.includes('@')) {
++                // Create success notification
++                const notification = document.createElement('div');
++                notification.className = 'fixed top-20 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50';
++                notification.innerHTML = `<i class="fas fa-check mr-2"></i>Successfully subscribed!`;
++                document.body.appendChild(notification);
++                
++                emailInput.value = '';
++                
++                // Remove notification after 3 seconds
++                setTimeout(() => {
++                    document.body.removeChild(notification);
++                }, 3000);
++            } else {
++                emailInput.focus();
++                emailInput.style.borderColor = '#ef4444';
++                setTimeout(() => {
++                    emailInput.style.borderColor = '';
++                }, 2000);
++            }
+         });
+     </script>
+ <p style="border-radius: 8px; text-align: center; font-size: 12px; color: #fff; margin-top: 16px;position: fixed; left: 8px; bottom: 8px; z-index: 10; background: rgba(0, 0, 0, 0.8); padding: 4px 8px;">Made with <img src="https://enzostvs-deepsite.hf.space/logo.svg" alt="DeepSite Logo" style="width: 16px; height: 16px; vertical-align: middle;display:inline-block;margin-right:3px;filter:brightness(0) invert(1);"><a href="https://enzostvs-deepsite.hf.space" style="color: #fff;text-decoration: underline;" target="_blank" >DeepSite</a> - 🧬 <a href="https://enzostvs-deepsite.hf.space?remix=Kevin-254/kevin" style="color: #fff;text-decoration: underline;" target="_blank" >Remix</a></p></body>
